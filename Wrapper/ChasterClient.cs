@@ -837,7 +837,82 @@ namespace ChasterSharp
 
         #endregion
 
+        #region Extensions - Share Links
+
+        public async Task<LinkInfoActionRepDto?> GetShareLinkInfoFromSessionIdAsync(string sessionId)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(sessionId, nameof(sessionId));
+
+            var result = await GetAsync($"shared-links/{sessionId}").ConfigureAwait(false);
+            _ = result.HttpResponse.EnsureSuccessStatusCode();
+
+            return await result.GetObjectAsync<LinkInfoActionRepDto>().ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Extension Actions
+
+        public async Task ResolveTaskAsync(string lockId, string tasksExtensionId, bool isCompleted)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
+            ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));
+
+            TriggerExtensionActionDto dto = new()
+            {
+                Action = "completeTask",
+                Payload = JsonSerializer.SerializeToElement(new ResolveTaskActionModel { IsCompleted = isCompleted })
+            };
+
+            _ = await TriggerLockActionAsync(lockId, tasksExtensionId, dto).ConfigureAwait(false);
+        }
+
+        public async Task<int?> ShareLinkVoteAsync(string lockId, string linkExtensionId, string sessionId, ShareLinkVoteAction voteAction)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
+            ArgumentException.ThrowIfNullOrEmpty(linkExtensionId, nameof(linkExtensionId));
+
+            TriggerExtensionActionDto dto = new()
+            {
+                Action = "vote",
+                Payload = JsonSerializer.SerializeToElement(new ShareLinkeVoteActionModel { Action = voteAction, SessionId = sessionId})
+            };
+
+            var result = await TriggerLockActionAsync(lockId, linkExtensionId, dto).ConfigureAwait(false);
+
+            var output = await result.GetObjectAsync<ShareLinkVoteActionRepDto>().ConfigureAwait(false);
+            return output?.Duration;
+        }
+
+        public async Task<SpinWheelActionModel?> SpinWheelOfFortuneAsync(string lockId, string diceExtensionId)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
+            ArgumentException.ThrowIfNullOrEmpty(diceExtensionId, nameof(diceExtensionId));
+
+            TriggerExtensionActionDto dto = new()
+            {
+                Action = "submit"
+            };
+
+            var result = await TriggerLockActionAsync(lockId, diceExtensionId, dto).ConfigureAwait(false);
+
+            return await result.GetObjectAsync<SpinWheelActionModel>().ConfigureAwait(false);
+        }
+
+        public async Task<RollDiceActionModel?> RollDiceAsync(string lockId, string diceExtensionId)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
+            ArgumentException.ThrowIfNullOrEmpty(diceExtensionId, nameof(diceExtensionId));
+
+            TriggerExtensionActionDto dto = new()
+            {
+                Action = "submit"
+            };
+
+            var result = await TriggerLockActionAsync(lockId, diceExtensionId, dto).ConfigureAwait(false);
+
+            return await result.GetObjectAsync<RollDiceActionModel>().ConfigureAwait(false);
+        }
 
         public async Task PilloryLockAsync(string lockId, string pilloryExtensionId, string? reason, int duration)
         {

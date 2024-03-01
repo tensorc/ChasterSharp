@@ -7,5 +7,4 @@ namespace ChasterSharp
         [JsonPropertyName("link")]
         public string? Link { get; set; } = default!;
     }
-
 }

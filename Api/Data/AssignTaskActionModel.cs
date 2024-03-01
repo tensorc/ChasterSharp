@@ -7,5 +7,4 @@ namespace ChasterSharp
         [JsonPropertyName("task")]
         public TaskActionParamsModel Task { get; set; } = new();
     }
-
 }

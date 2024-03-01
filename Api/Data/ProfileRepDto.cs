@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -13,10 +12,10 @@ namespace ChasterSharp
         public UserStatsForPublic? Stats { get; set; } = default!;
         [JsonPropertyName("achievements")]
         [Required]
-        public ICollection<UserAchievementsRepDto> Achievements { get; set; } = new Collection<UserAchievementsRepDto>();
+        public List<UserAchievementsRepDto> Achievements { get; set; } = [];
         [JsonPropertyName("sharedLocks")]
         [Required]
-        public ICollection<PublicLockForProfilePage> SharedLocks { get; set; } = new Collection<PublicLockForProfilePage>();
+        public List<PublicLockForProfilePage> SharedLocks { get; set; } = [];
         [JsonPropertyName("chastikeyStats")]
         public ChastikeyStatsForPublic? ChastikeyStats { get; set; } = default!;
 

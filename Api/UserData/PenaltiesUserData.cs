@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -7,7 +7,7 @@ namespace ChasterSharp
     {
 
         [JsonPropertyName("status")]
-        public ICollection<PenaltyUserDataParams>? Status { get; set; } = new Collection<PenaltyUserDataParams>();
+        public List<PenaltyUserDataParams>? Status { get; set; } = default;
 
     }
 }

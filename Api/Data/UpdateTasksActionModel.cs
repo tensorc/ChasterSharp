@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -6,7 +6,7 @@ namespace ChasterSharp
     public sealed class UpdateTasksActionModel
     {
         [JsonPropertyName("tasks")]
-        public ICollection<TaskActionParamsModel> Tasks { get; set; } = new Collection<TaskActionParamsModel>();
+        public List<TaskActionParamsModel> Tasks { get; set; } = [];
     }
 
 }

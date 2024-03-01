@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -16,7 +15,7 @@ namespace ChasterSharp
         public int? MaxPoints { get; set; } = default!;
         [JsonPropertyName("actions")]
         [Required]
-        public ICollection<CommunityEventAction> Actions { get; set; } = new Collection<CommunityEventAction>();
+        public List<CommunityEventAction> Actions { get; set; } = [];
         [JsonPropertyName("hidden")]
         public bool? Hidden { get; set; } = default!;
 

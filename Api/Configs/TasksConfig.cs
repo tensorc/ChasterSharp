@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -7,7 +6,7 @@ namespace ChasterSharp
     public sealed class TasksConfig
     {
         [JsonPropertyName("tasks")]
-        public ICollection<TaskPayload>? Tasks { get; set; } = new Collection<TaskPayload>();
+        public List<TaskPayload>? Tasks { get; set; } = default;
 
         [JsonPropertyName("voteEnabled")]
         public bool VoteEnabled { get; set; }
@@ -37,7 +36,7 @@ namespace ChasterSharp
         public bool AllowWearerToChooseTasks { get; set; }
 
         [JsonPropertyName("actionsOnAbandonedTask")]
-        public ICollection<JsonElement>? PunishmentsOnAbandonedTask { get; set; } = new Collection<JsonElement>(); //Punishments
+        public List<JsonElement>? PunishmentsOnAbandonedTask { get; set; } = default; //Punishments
     }
 
 }

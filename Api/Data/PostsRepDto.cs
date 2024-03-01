@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -12,7 +12,7 @@ namespace ChasterSharp
         public bool HasMore { get; set; }
 
         [JsonPropertyName("results")]
-        public ICollection<UserPostForPublic> Results { get; set; } = new Collection<UserPostForPublic>();
+        public List<UserPostForPublic> Results { get; set; } = [];
     }
 
 }

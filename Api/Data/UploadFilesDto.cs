@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -11,7 +10,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("files")]
         [Required]
-        public ICollection<FileParameter> Files { get; set; } = new Collection<FileParameter>();
+        public List<FileParameter> Files { get; set; } = [];
 
         /// <summary>
         /// The target storage

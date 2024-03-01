@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ChasterSharp
 {
-    internal sealed class EnumStringConverter
+    public sealed class EnumStringConverter
     {
 
         public static Enum GetEnumFromMemberValue(Type typeToConvert, string? enumMemberValue)

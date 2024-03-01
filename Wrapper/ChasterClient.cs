@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -35,7 +34,7 @@ namespace ChasterSharp
         {
             ArgumentNullException.ThrowIfNull(uploadFiles, nameof(uploadFiles));
 
-            using MultipartFormDataContent multipartContent = new();
+            using MultipartFormDataContent multipartContent = [];
 
             foreach (var file in uploadFiles.Files)
             {
@@ -85,7 +84,7 @@ namespace ChasterSharp
 
         public async Task<SharedLockForPublic[]?> GetSharedLocksAsync(SharedLockStatus? status = null)
         {
-            Dictionary<string, string> parameters = new();
+            Dictionary<string, string> parameters = [];
 
             if (status is not null) parameters.Add("status", EnumStringConverter.GetMemberValueFromEnum(status)!);
 
@@ -185,7 +184,7 @@ namespace ChasterSharp
 
         public async Task<LockForPublic[]?> GetLocksAsync(UserLockStatus? status = null)
         {
-            Dictionary<string, string> parameters = new();
+            Dictionary<string, string> parameters = [];
 
             if (status is not null) parameters.Add("status", EnumStringConverter.GetMemberValueFromEnum(status)!);
 
@@ -442,7 +441,7 @@ namespace ChasterSharp
         {
             ArgumentNullException.ThrowIfNull(uploadCombinationImage);
 
-            using MultipartFormDataContent multipartContent = new();
+            using MultipartFormDataContent multipartContent = [];
             using ByteArrayContent byteContent = new(uploadCombinationImage.File.Data);
 
             if (!string.IsNullOrEmpty(uploadCombinationImage.File.ContentType)) byteContent.Headers.ContentType = MediaTypeHeaderValue.Parse(uploadCombinationImage.File.ContentType);
@@ -563,7 +562,7 @@ namespace ChasterSharp
         //NOTE: Limit has a range of 1-100, offset should be the value returned from a previous call
         public async Task<ConversationsRepDto?> GetConversationsAsync(int? limit = null, ConversationStatus? status = null, DateTimeOffset? offset = null)
         {
-            Dictionary<string, string> parameters = new();
+            Dictionary<string, string> parameters = [];
 
             if (limit is not null) parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
 
@@ -641,7 +640,7 @@ namespace ChasterSharp
         //NOTE: Limit has a range of 1-100
         public async Task<MessagesRepDto?> GetConversationMessagesAsync(string conversationId, int? limit = null, string? lastId = null)
         {
-            Dictionary<string, string> parameters = new();
+            Dictionary<string, string> parameters = [];
 
             if (limit is not null) parameters.Add("limit", limit.Value.ToString(CultureInfo.InvariantCulture));
 
@@ -870,7 +869,7 @@ namespace ChasterSharp
 
         }
 
-        public async Task UpdateLockTasksAsync(string lockId, string tasksExtensionId, ICollection<TaskActionParamsModel> tasks)
+        public async Task UpdateLockTasksAsync(string lockId, string tasksExtensionId, List<TaskActionParamsModel> tasks)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));

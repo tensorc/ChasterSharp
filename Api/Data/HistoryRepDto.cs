@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -11,7 +10,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("results")]
         [Required]
-        public ICollection<ActionLogForPublic> Results { get; set; } = new Collection<ActionLogForPublic>();
+        public List<ActionLogForPublic> Results { get; set; } = new();
         /// <summary>
         /// Number of total action logs
         /// </summary>

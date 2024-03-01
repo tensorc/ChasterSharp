@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -12,7 +11,7 @@ namespace ChasterSharp
         [JsonPropertyName("features")]
         [Required]
         [JsonConverter(typeof(CustomICollectionStringEnumConverter<FeatureSwitch>))]
-        public ICollection<FeatureSwitch> Features { get; set; } = new Collection<FeatureSwitch>();
+        public List<FeatureSwitch> Features { get; set; } = [];
         /// <summary>
         /// The maximum number of locks allowed for a non-premium user
         /// </summary>

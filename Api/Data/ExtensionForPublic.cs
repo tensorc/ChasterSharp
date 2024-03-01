@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -61,7 +60,7 @@ namespace ChasterSharp
         [JsonPropertyName("availableModes")]
         [Required]
         [JsonConverter(typeof(CustomICollectionStringEnumConverter<LockExtensionMode>))]
-        public ICollection<LockExtensionMode> AvailableModes { get; set; } = new Collection<LockExtensionMode>();
+        public List<LockExtensionMode> AvailableModes { get; set; } = [];
         /// <summary>
         /// Default regularity
         /// </summary>

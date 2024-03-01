@@ -2,6 +2,10 @@ Purpose
 --------
 ChasterSharp is a lightweight C# wrapper for Chaster.app API, designed to provide a foundational framework for building more advanced clients and applications on top of it. The intended use case of this framework is to support bots and other service integrations to interact with Chaster directly, as opposed to extending Chaster's functionality via the Extensions API. As such, support for partner extensions will be limited if available at all.
 
+Important Notice
+--------
+This project is currently under active development, and breaking changes to the API may occur frequently. Please be aware that any code relying on this API may need to be updated accordingly.
+
 Getting Started
 --------
 
@@ -40,21 +44,21 @@ var searchDto = new KeyholderSearchLocksDto()
 };
 
 //There is potential pagination here, but you get the idea
-var wearerLocks = await chasterClient.SearchLockedUsersAsync(searchDto);
+var keyholderLocks = await chasterClient.SearchLockedUsersAsync(searchDto);
 
-if (wearerLocks is null)
+if (keyholderLocks is null)
     return;
 
-foreach (var wearerLock in wearerLocks.Locks)
+foreach (var keyholdeLock in keyholderLocks.Locks)
 {
-    string? pilloryExtensionId = wearerLock.Extensions.
+    string? pilloryExtensionId = keyholdeLock.Extensions.
         FirstOrDefault(x => x.GetExtensionSlug() == ExtensionSlug.Pillory)?.Id;
 
     if (string.IsNullOrEmpty(pilloryExtensionId))
         continue; //Pillory extension not found
 
-    if (wearerLock.IsFrozen)
-        await chasterClient.PilloryLockAsync(wearerLock.Id, pilloryExtensionId, "for being frozen", 60 * 10);
+    if (keyholdeLock.IsFrozen)
+        await chasterClient.PilloryLockAsync(keyholdeLock.Id, pilloryExtensionId, "for being frozen", 60 * 10);
 }
 ```
 <!-- endSnippet -->
@@ -68,17 +72,15 @@ public static async Task UpdateDiceExtension(ChasterClient client, LockForKeyhol
     if (!keyholderLock.Trusted)
         return; //Not trusted, so we can't modify extensions
 
-    var lockExtensions = keyholderLock.Extensions.ToList();
-    var diceExtensionIndex = lockExtensions.FindIndex(x => x.GetExtensionSlug() == ExtensionSlug.Dice);
+    var diceExtension = keyholderLock.Extensions.FirstOrDefault(x => x.GetExtensionSlug() == ExtensionSlug.Dice);
 
-    if (diceExtensionIndex == -1)
+    if (diceExtension is null)
         return; //Dice extension not found
 
-    var diceExtensionConfig = lockExtensions[diceExtensionIndex].Config.Deserialize<DiceConfig>()!;
+    var diceExtensionConfig = diceExtension.Config.Deserialize<DiceConfig>()!;
     diceExtensionConfig.Multiplier = diceMultiplier;
 
-    lockExtensions[diceExtensionIndex].Config = JsonSerializer.SerializeToElement(diceExtensionConfig);
-    keyholderLock.Extensions = lockExtensions; //Ensure we keep track of the extension state
+    diceExtension.Config = JsonSerializer.SerializeToElement(diceExtensionConfig);
 
     var editExtensionsDto = new EditLockExtensionsDto()
     {
@@ -88,7 +90,7 @@ public static async Task UpdateDiceExtension(ChasterClient client, LockForKeyhol
     await client.UpdateLockExtensionsAsync(keyholderLock.Id, editExtensionsDto);
 }
 
-public static ICollection<LockExtensionConfigDto> ToLockExtensionConfig(ICollection<ExtensionPartyForPublic> extensions)
+public static List<LockExtensionConfigDto> ToLockExtensionConfig(List<ExtensionPartyForPublic> extensions)
 {
     var configs = new List<LockExtensionConfigDto>();
 

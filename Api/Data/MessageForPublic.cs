@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -23,7 +22,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("attachments")]
         [Required]
-        public ICollection<AppFileForPublic> Attachments { get; set; } = new Collection<AppFileForPublic>();
+        public List<AppFileForPublic> Attachments { get; set; } = [];
         /// <summary>
         /// The conversation id
         /// </summary>

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -21,7 +20,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("locks")]
         [Required]
-        public ICollection<LockForKeyholder> Locks { get; set; } = new Collection<LockForKeyholder>();
+        public List<LockForKeyholder> Locks { get; set; } = [];
 
     }
 

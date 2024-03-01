@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -14,7 +13,7 @@ namespace ChasterSharp
         public PenaltyName Name { get; set; }
 
         [JsonPropertyName("punishments")]
-        public ICollection<JsonElement>? Punishments { get; set; } = new Collection<JsonElement>();
+        public List<JsonElement>? Punishments { get; set; } = default;
 
     }
 

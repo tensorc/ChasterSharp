@@ -8,7 +8,7 @@ namespace ChasterSharp
         /// An array of shared locks ids
         /// </summary>
         [JsonPropertyName("sharedLockIds")]
-        public ICollection<string>? SharedLockIds { get; set; } = default!;
+        public List<string>? SharedLockIds { get; set; } = default!;
         /// <summary>
         /// Whether the request includes locks created by wearers
         /// </summary>

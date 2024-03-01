@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -12,7 +11,7 @@ namespace ChasterSharp
         public bool HasMore { get; set; } = default!;
         [JsonPropertyName("results")]
         [Required]
-        public ICollection<PublicLockForSearch> Results { get; set; } = new Collection<PublicLockForSearch>();
+        public List<PublicLockForSearch> Results { get; set; } = new();
 
     }
 

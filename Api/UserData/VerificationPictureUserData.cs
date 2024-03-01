@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
@@ -17,8 +18,8 @@ namespace ChasterSharp
         [JsonPropertyName("nbVerificationPictures")]
         public int NbVerificationPictures { get; set; }
 
-        //[JsonPropertyName("history")]
-        //public ICollection<>? History { get; set; } = new Collection<>();
+        [JsonPropertyName("history")]
+        public List<JsonElement> History { get; set; } = []; //TODO: Research further, I've never seen this populated
 
     }
 

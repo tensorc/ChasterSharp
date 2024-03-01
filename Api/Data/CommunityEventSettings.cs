@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -46,7 +45,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("tiers")]
         [Required]
-        public ICollection<CommunityEventTier> Tiers { get; set; } = new Collection<CommunityEventTier>();
+        public List<CommunityEventTier> Tiers { get; set; } = [];
 
     }
 

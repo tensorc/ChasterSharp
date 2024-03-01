@@ -12,7 +12,7 @@ namespace ChasterSharp
         [Required(AllowEmptyStrings = true)]
         public string CountryShortCode { get; set; } = default!;
         [JsonPropertyName("regions")]
-        public ICollection<Region>? Regions { get; set; } = default!;
+        public List<Region>? Regions { get; set; } = default;
 
     }
 

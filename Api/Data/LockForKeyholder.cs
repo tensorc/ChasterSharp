@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -169,7 +168,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("extensions")]
         [Required]
-        public ICollection<ExtensionPartyForPublic> Extensions { get; set; } = new Collection<ExtensionPartyForPublic>();
+        public List<ExtensionPartyForPublic> Extensions { get; set; } = [];
         /// <summary>
         /// The combination
         /// </summary>
@@ -181,13 +180,13 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("availableHomeActions")]
         [Required]
-        public ICollection<ExtensionHomeActionWithPartyId> AvailableHomeActions { get; set; } = new Collection<ExtensionHomeActionWithPartyId>();
+        public List<ExtensionHomeActionWithPartyId> AvailableHomeActions { get; set; } = [];
         /// <summary>
         /// Reasons preventing unlocking
         /// </summary>
         [JsonPropertyName("reasonsPreventingUnlocking")]
         [Required]
-        public ICollection<ReasonPreventingUnlocking> ReasonsPreventingUnlocking { get; set; } = new Collection<ReasonPreventingUnlocking>();
+        public List<ReasonPreventingUnlocking> ReasonsPreventingUnlocking { get; set; } = [];
         /// <summary>
         /// Whether the extensions allow unlocking
         /// </summary>

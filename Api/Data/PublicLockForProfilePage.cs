@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -115,7 +114,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("extensions")]
         [Required]
-        public ICollection<ExtensionConfigForPublic> Extensions { get; set; } = new Collection<ExtensionConfigForPublic>();
+        public List<ExtensionConfigForPublic> Extensions { get; set; } = [];
         /// <summary>
         /// Created at
         /// </summary>
@@ -143,7 +142,7 @@ namespace ChasterSharp
         /// <br/>Only returned in shared locks endpoints
         /// </summary>
         [JsonPropertyName("locks")]
-        public ICollection<LockForPublic>? Locks { get; set; } = default!;
+        public List<LockForPublic>? Locks { get; set; } = default!;
         /// <summary>
         /// Whether the lock requires a password
         /// </summary>

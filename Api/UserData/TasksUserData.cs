@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -19,7 +19,7 @@ namespace ChasterSharp
         public TaskPayload? CurrentTask { get; set; }
 
         [JsonPropertyName("userTasks")]
-        public ICollection<TaskPayload>? UserTasks { get; set; } = new Collection<TaskPayload>();
+        public List<TaskPayload>? UserTasks { get; set; } = default;
 
         [JsonPropertyName("currentTaskVote")]
         public string? CurrentTaskVoteId { get; set; }

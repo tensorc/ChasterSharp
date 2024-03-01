@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -8,7 +7,7 @@ namespace ChasterSharp
     {
         [JsonPropertyName("results")]
         [Required]
-        public ICollection<PublicLockForSearch> Results { get; set; } = new Collection<PublicLockForSearch>();
+        public List<PublicLockForSearch> Results { get; set; } = [];
         [JsonPropertyName("lastId")]
         [Required(AllowEmptyStrings = true)]
         public string LastId { get; set; } = default!;

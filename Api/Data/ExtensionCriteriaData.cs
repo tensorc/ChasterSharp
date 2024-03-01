@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -8,7 +7,7 @@ namespace ChasterSharp
     {
         [JsonPropertyName("extensions")]
         [Required]
-        public ICollection<string> Extensions { get; set; } = new Collection<string>();
+        public List<string> Extensions { get; set; } = [];
         [JsonPropertyName("all")]
         public bool All { get; set; } = false;
 

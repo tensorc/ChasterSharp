@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
@@ -17,7 +16,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("users")]
         [Required]
-        public ICollection<UserForPublic> Users { get; set; } = new Collection<UserForPublic>();
+        public List<UserForPublic> Users { get; set; } = [];
         /// <summary>
         /// The last message sent
         /// </summary>

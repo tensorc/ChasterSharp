@@ -22,8 +22,8 @@ namespace ChasterSharp
 
         [JsonPropertyName("mode")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<LockExtensionConfigDtoMode>))]
-        public LockExtensionConfigDtoMode Mode { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<LockExtensionMode>))]
+        public LockExtensionMode Mode { get; set; } = default!;
 
         [JsonPropertyName("regularity")]
         public int Regularity { get; set; } = default!;

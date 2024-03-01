@@ -19,8 +19,8 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("type")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<CreateConversationDtoType>))]
-        public CreateConversationDtoType Type { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<ConversationType>))]
+        public ConversationType Type { get; set; } = default!;
         /// <summary>
         /// The file token
         /// <br/>

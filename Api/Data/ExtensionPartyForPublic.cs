@@ -54,8 +54,8 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("mode")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<ExtensionPartyForPublicMode>))]
-        public ExtensionPartyForPublicMode Mode { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<LockExtensionMode>))]
+        public LockExtensionMode Mode { get; set; } = default!;
         [JsonPropertyName("userData")]
         [Required]
         public JsonElement UserData { get; set; } = default!;

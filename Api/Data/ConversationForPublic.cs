@@ -62,8 +62,8 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("type")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<ConversationForPublicType>))]
-        public ConversationForPublicType Type { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<ConversationType>))]
+        public ConversationType Type { get; set; } = default!;
 
     }
 

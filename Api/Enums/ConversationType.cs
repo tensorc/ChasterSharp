@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public enum CreateConversationDtoType
+    public enum ConversationType
     {
         Unknown = -1,
         [EnumMember(Value = "private")]

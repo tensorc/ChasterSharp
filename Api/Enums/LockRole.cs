@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public enum LockForPublicRole
+    public enum LockRole
     {
         Unknown = -1,
         [EnumMember(Value = "keyholder")]

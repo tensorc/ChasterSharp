@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public enum SessionOfferRequestForKeyholderStatus
+    public enum SessionOfferRequestStatus
     {
         Unknown = -1,
         [EnumMember(Value = "pending")]

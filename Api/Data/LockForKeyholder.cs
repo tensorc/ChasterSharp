@@ -162,8 +162,8 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("role")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<LockForKeyholderRole>))]
-        public LockForKeyholderRole Role { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<LockRole>))]
+        public LockRole Role { get; set; } = default!;
         /// <summary>
         /// The extensions
         /// </summary>

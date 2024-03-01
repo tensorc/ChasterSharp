@@ -13,8 +13,8 @@ namespace ChasterSharp
         public UserForPublic Lock { get; set; } = new();
         [JsonPropertyName("status")]
         [Required(AllowEmptyStrings = true)]
-        [JsonConverter(typeof(CustomStringEnumConverter<SessionOfferRequestForKeyholderStatus>))]
-        public SessionOfferRequestForKeyholderStatus Status { get; set; } = default!;
+        [JsonConverter(typeof(CustomStringEnumConverter<SessionOfferRequestStatus>))]
+        public SessionOfferRequestStatus Status { get; set; } = default!;
         [JsonPropertyName("validatedAt")]
         public DateTimeOffset? ValidatedAt { get; set; } = default!;
         [JsonPropertyName("archivedAt")]

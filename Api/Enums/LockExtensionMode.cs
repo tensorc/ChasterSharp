@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public enum ExtensionPartyForPublicMode
+    public enum LockExtensionMode
     {
         Unknown = -1,
         [EnumMember(Value = "cumulative")]

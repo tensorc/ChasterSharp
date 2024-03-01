@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -30,7 +31,7 @@ namespace ChasterSharp
         #region Files
 
         //TODO: Test this, also it appears to support multiple files but only returns 1 Token?
-        public async Task<string?> UploadFiles(UploadFilesDto uploadFiles)
+        public async Task<string?> UploadFilesAsync(UploadFilesDto uploadFiles)
         {
             ArgumentNullException.ThrowIfNull(uploadFiles, nameof(uploadFiles));
 
@@ -55,7 +56,7 @@ namespace ChasterSharp
             return output?.Token;
         }
 
-        public async Task<Uri?> GetFileUrl(string fileKey)
+        public async Task<Uri?> GetFileUrlAsync(string fileKey)
         {
             ArgumentException.ThrowIfNullOrEmpty(fileKey, nameof(fileKey));
 
@@ -70,7 +71,7 @@ namespace ChasterSharp
 
         #region Reports
 
-        public async void CreateReport(CreateReportDto createReport)
+        public async Task CreateReportAsync(CreateReportDto createReport)
         {
             ArgumentNullException.ThrowIfNull(createReport, nameof(createReport));
 
@@ -82,7 +83,7 @@ namespace ChasterSharp
 
         #region Shared Locks
 
-        public async Task<SharedLockForPublic[]?> GetSharedLocks(SharedLockStatus? status = null)
+        public async Task<SharedLockForPublic[]?> GetSharedLocksAsync(SharedLockStatus? status = null)
         {
             Dictionary<string, string> parameters = new();
 
@@ -94,7 +95,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<SharedLockForPublic[]>().ConfigureAwait(false);
         }
 
-        public async Task<string?> CreateSharedLock(CreateUpdateSharedLockDto createUpdateSharedLock)
+        public async Task<string?> CreateSharedLockAsync(CreateUpdateSharedLockDto createUpdateSharedLock)
         {
             ArgumentNullException.ThrowIfNull(createUpdateSharedLock, nameof(createUpdateSharedLock));
 
@@ -105,7 +106,7 @@ namespace ChasterSharp
             return output?.Id;
         }
 
-        public async Task<SharedLockForPublic?> GetSharedLock(string sharedLockId)
+        public async Task<SharedLockForPublic?> GetSharedLockAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -115,7 +116,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<SharedLockForPublic>().ConfigureAwait(false);
         }
 
-        public async void UpdateSharedLock(string sharedLockId, CreateUpdateSharedLockDto createUpdateSharedLock)
+        public async Task UpdateSharedLockAsync(string sharedLockId, CreateUpdateSharedLockDto createUpdateSharedLock)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
             ArgumentNullException.ThrowIfNull(createUpdateSharedLock, nameof(createUpdateSharedLock));
@@ -124,7 +125,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void UpdateSharedLockExtensions(string sharedLockId, EditLockExtensionsDto editLockExtensions)
+        public async Task UpdateSharedLockExtensionsAsync(string sharedLockId, EditLockExtensionsDto editLockExtensions)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
             ArgumentNullException.ThrowIfNull(editLockExtensions);
@@ -133,7 +134,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void ArchiveSharedLock(string sharedLockId)
+        public async Task ArchiveSharedLockAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -141,7 +142,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<bool?> GetSharedLockIsFavorite(string sharedLockId)
+        public async Task<bool?> GetSharedLockIsFavoriteAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -152,7 +153,7 @@ namespace ChasterSharp
             return output?.Favorite;
         }
 
-        public async void FavoriteSharedLock(string sharedLockId)
+        public async Task FavoriteSharedLockAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -160,7 +161,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void UnfavoriteSharedLock(string sharedLockId)
+        public async Task UnfavoriteSharedLockAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -168,7 +169,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<FavoriteSharedLocksRepDto?> GetFavoriteSharedLocks(FavoriteSharedLocksDto getFavoriteSharedLocks)
+        public async Task<FavoriteSharedLocksRepDto?> GetFavoriteSharedLocksAsync(FavoriteSharedLocksDto getFavoriteSharedLocks)
         {
             ArgumentNullException.ThrowIfNull(getFavoriteSharedLocks);
 
@@ -182,7 +183,7 @@ namespace ChasterSharp
 
         #region Locks
 
-        public async Task<LockForPublic[]?> GetLocks(UserLockStatus? status = null)
+        public async Task<LockForPublic[]?> GetLocksAsync(UserLockStatus? status = null)
         {
             Dictionary<string, string> parameters = new();
 
@@ -194,7 +195,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<LockForPublic[]>().ConfigureAwait(false);
         }
 
-        public async Task<LockForPublic?> GetLock(string lockId)
+        public async Task<LockForPublic?> GetLockAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -204,7 +205,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<LockForPublic>().ConfigureAwait(false);
         }
 
-        public async void ArchiveLock(string lockId)
+        public async Task ArchiveLockAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -212,7 +213,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void ArchiveKeyholderLock(string lockId)
+        public async Task ArchiveKeyholderLockAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -220,7 +221,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void AddLockTime(string lockId, int timeToAdd)
+        public async Task AddLockTimeAsync(string lockId, int timeToAdd)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -230,7 +231,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void SetLockFreeze(string lockId, bool isFrozen)
+        public async Task SetLockFreezeAsync(string lockId, bool isFrozen)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -240,7 +241,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void UnlockLock(string lockId)
+        public async Task UnlockLockAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -248,7 +249,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void SetLockTimeInfo(string lockId, bool? displayRemainingTime, bool? hideTimeLogs)
+        public async Task SetLockTimeInfoAsync(string lockId, bool? displayRemainingTime, bool? hideTimeLogs)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -258,7 +259,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void SetLockMaxLimitDate(string lockId, DateTimeOffset maxLimitDate, bool disableMaxLimitDate)
+        public async Task SetLockMaxLimitDateAsync(string lockId, DateTimeOffset maxLimitDate, bool disableMaxLimitDate)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -268,7 +269,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void TrustLockKeyholder(string lockId)
+        public async Task TrustLockKeyholderAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -276,7 +277,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<CombinationForPublic?> GetLockCombination(string lockId)
+        public async Task<CombinationForPublic?> GetLockCombinationAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -286,7 +287,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<CombinationForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<HistoryRepDto?> GetLockHistory(string lockId, LockHistoryDto getLockHistory)
+        public async Task<HistoryRepDto?> GetLockHistoryAsync(string lockId, LockHistoryDto getLockHistory)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentNullException.ThrowIfNull(getLockHistory);
@@ -297,7 +298,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<HistoryRepDto>().ConfigureAwait(false);
         }
 
-        public async void SetLockAsTest(string lockId)
+        public async Task SetLockAsTestAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -305,7 +306,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<LockInfoFromExtensionRepDto?> GetLockExtensionInfo(string lockId, string extensionId)
+        public async Task<LockInfoFromExtensionRepDto?> GetLockExtensionInfoAsync(string lockId, string extensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(extensionId, nameof(extensionId));
@@ -316,7 +317,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<LockInfoFromExtensionRepDto>().ConfigureAwait(false);
         }
 
-        public async Task<ApiResult> TriggerLockAction(string lockId, string extensionId, TriggerExtensionActionDto triggerExtensionAction)
+        public async Task<ApiResult> TriggerLockActionAsync(string lockId, string extensionId, TriggerExtensionActionDto triggerExtensionAction)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(extensionId, nameof(extensionId));
@@ -332,7 +333,7 @@ namespace ChasterSharp
 
         #region Lock Creation
 
-        public async Task<string?> CreateLock(CreateLockDto createLock)
+        public async Task<string?> CreateLockAsync(CreateLockDto createLock)
         {
             ArgumentNullException.ThrowIfNull(createLock);
 
@@ -343,7 +344,7 @@ namespace ChasterSharp
             return output?.LockId;
         }
 
-        public async void UpdateLockExtensions(string lockId, EditLockExtensionsDto editLockExtensions)
+        public async Task UpdateLockExtensionsAsync(string lockId, EditLockExtensionsDto editLockExtensions)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId)); 
             ArgumentNullException.ThrowIfNull(editLockExtensions);
@@ -352,7 +353,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<string?> CreateLockFromSharedLock(string sharedLockId, CreateLockFromSharedLockDto createLockFromSharedLock)
+        public async Task<string?> CreateLockFromSharedLockAsync(string sharedLockId, CreateLockFromSharedLockDto createLockFromSharedLock)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId)); 
             ArgumentNullException.ThrowIfNull(createLockFromSharedLock);
@@ -368,7 +369,7 @@ namespace ChasterSharp
 
         #region Profile
 
-        public async Task<LockForPublic[]?> GetUserLocks(string userId)
+        public async Task<LockForPublic[]?> GetUserLocksAsync(string userId)
         {
             ArgumentException.ThrowIfNullOrEmpty(userId, nameof(userId));
 
@@ -378,7 +379,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<LockForPublic[]>().ConfigureAwait(false);
         }
 
-        public async Task<UserForPublic?> GetUser(string userId)
+        public async Task<UserForPublic?> GetUserAsync(string userId)
         {
             ArgumentException.ThrowIfNullOrEmpty(userId, nameof(userId));
 
@@ -388,7 +389,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<UserForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<UserForPublic?> GetUserByName(string userName)
+        public async Task<UserForPublic?> GetUserByNameAsync(string userName)
         {
             ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
 
@@ -398,7 +399,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<UserForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<ProfileRepDto?> GetUserDetails(string userName)
+        public async Task<ProfileRepDto?> GetUserDetailsAsync(string userName)
         {
             ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
 
@@ -408,7 +409,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<ProfileRepDto>().ConfigureAwait(false);
         }
 
-        public async Task<UserBadgeCount?> GetBadgeCounts()
+        public async Task<UserBadgeCount?> GetBadgeCountsAsync()
         {
             var result = await GetAsync("users/badge/count").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -416,7 +417,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<UserBadgeCount>().ConfigureAwait(false);
         }
 
-        public async Task<CurrentUserForProfileSettings?> GetUserProfileInfo()
+        public async Task<CurrentUserForProfileSettings?> GetUserProfileInfoAsync()
         {
             var result = await GetAsync("auth/profile/update").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -424,7 +425,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<CurrentUserForProfileSettings>().ConfigureAwait(false);
         }
 
-        public async Task<CurrentUser?> GetUserInfo()
+        public async Task<CurrentUser?> GetUserInfoAsync()
         {
             var result = await GetAsync("auth/profile").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -437,7 +438,7 @@ namespace ChasterSharp
         #region Combinations
 
         //TODO: Test this
-        public async Task<string?> UploadCombinationImage(UploadCombinationImageDto uploadCombinationImage)
+        public async Task<string?> UploadCombinationImageAsync(UploadCombinationImageDto uploadCombinationImage)
         {
             ArgumentNullException.ThrowIfNull(uploadCombinationImage);
 
@@ -461,7 +462,7 @@ namespace ChasterSharp
             return output?.CombinationId;
         }
 
-        public async Task<string?> CreateCodeCombination(string code)
+        public async Task<string?> CreateCodeCombinationAsync(string code)
         {
             ArgumentException.ThrowIfNullOrEmpty(code, nameof(code));
 
@@ -478,7 +479,7 @@ namespace ChasterSharp
 
         #region Extensions
 
-        public async Task<ExtensionForPublic[]?> GetExtensions()
+        public async Task<ExtensionForPublic[]?> GetExtensionsAsync()
         {
             var result = await GetAsync("extensions").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -490,7 +491,7 @@ namespace ChasterSharp
 
         #region Session Offer
 
-        public async void CreateKeyholdingOffer(string lockId, string keyholderUserName)
+        public async Task CreateKeyholdingOfferAsync(string lockId, string keyholderUserName)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(keyholderUserName, nameof(keyholderUserName));
@@ -501,7 +502,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void AcceptKeyholdingRequest(string offerToken)
+        public async Task AcceptKeyholdingRequestAsync(string offerToken)
         {
             ArgumentException.ThrowIfNullOrEmpty(offerToken, nameof(offerToken));
 
@@ -509,7 +510,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<SessionOfferRequestForPublic[]?> GetKeyholdingOffers(string lockId)
+        public async Task<SessionOfferRequestForPublic[]?> GetKeyholdingOffersAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -519,7 +520,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<SessionOfferRequestForPublic[]>().ConfigureAwait(false);
         }
 
-        public async Task<LockForPublic?> GetLockByKeyholdingOffer(string offerToken)
+        public async Task<LockForPublic?> GetLockByKeyholdingOfferAsync(string offerToken)
         {
             ArgumentException.ThrowIfNullOrEmpty(offerToken, nameof(offerToken));
 
@@ -529,7 +530,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<LockForPublic>().ConfigureAwait(false);
         }
 
-        public async void RespondToKeyholdingOffer(string sessionRequestId, bool accept)
+        public async Task RespondToKeyholdingOfferAsync(string sessionRequestId, bool accept)
         {
             ArgumentException.ThrowIfNullOrEmpty(sessionRequestId, nameof(sessionRequestId));
 
@@ -539,7 +540,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void ArchiveKeyholdingOffer(string sessionRequestId)
+        public async Task ArchiveKeyholdingOfferAsync(string sessionRequestId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sessionRequestId, nameof(sessionRequestId));
 
@@ -547,7 +548,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<SessionOfferRequestForKeyholder[]?> GetKeyholdingRequests()
+        public async Task<SessionOfferRequestForKeyholder[]?> GetKeyholdingRequestsAsync()
         {
             var result = await GetAsync("session-offer/requests").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -560,7 +561,7 @@ namespace ChasterSharp
         #region Messaging
 
         //NOTE: Limit has a range of 1-100, offset should be the value returned from a previous call
-        public async Task<ConversationsRepDto?> GetConversations(int? limit = null, ConversationStatus? status = null, DateTimeOffset? offset = null)
+        public async Task<ConversationsRepDto?> GetConversationsAsync(int? limit = null, ConversationStatus? status = null, DateTimeOffset? offset = null)
         {
             Dictionary<string, string> parameters = new();
 
@@ -576,7 +577,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<ConversationsRepDto>().ConfigureAwait(false);
         }
 
-        public async Task<ConversationForPublic?> CreateConversation(CreateConversationDto createConversation)
+        public async Task<ConversationForPublic?> CreateConversationAsync(CreateConversationDto createConversation)
         {
             ArgumentNullException.ThrowIfNull(createConversation);
 
@@ -586,7 +587,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<ConversationForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<ConversationForPublic?> GetConversationByUserId(string userId)
+        public async Task<ConversationForPublic?> GetConversationByUserIdAsync(string userId)
         {
             ArgumentException.ThrowIfNullOrEmpty(userId, nameof(userId));
 
@@ -596,7 +597,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<ConversationForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<MessageForPublic?> AddMessageToConversation(string conversationId, UpdateConversationDto updateConversation)
+        public async Task<MessageForPublic?> AddMessageToConversationAsync(string conversationId, UpdateConversationDto updateConversation)
         {
             ArgumentException.ThrowIfNullOrEmpty(conversationId, nameof(conversationId));
             ArgumentNullException.ThrowIfNull(updateConversation);
@@ -607,7 +608,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<MessageForPublic>().ConfigureAwait(false);
         }
 
-        public async Task<ConversationForPublic?> GetConversation(string conversationId)
+        public async Task<ConversationForPublic?> GetConversationAsync(string conversationId)
         {
             ArgumentException.ThrowIfNullOrEmpty(conversationId, nameof(conversationId));
 
@@ -617,7 +618,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<ConversationForPublic>().ConfigureAwait(false);
         }
 
-        public async void SetConversationStatus(string conversationId, SetConversationStatusDtoStatus status)
+        public async Task SetConversationStatusAsync(string conversationId, SetConversationStatusDtoStatus status)
         {
             ArgumentException.ThrowIfNullOrEmpty(conversationId, nameof(conversationId));
 
@@ -627,7 +628,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async void SetConversationStatus(string conversationId, bool unread)
+        public async Task SetConversationStatusAsync(string conversationId, bool unread)
         {
             ArgumentException.ThrowIfNullOrEmpty(conversationId, nameof(conversationId));
 
@@ -638,7 +639,7 @@ namespace ChasterSharp
         }
 
         //NOTE: Limit has a range of 1-100
-        public async Task<MessagesRepDto?> GetConversationMessages(string conversationId, int? limit = null, string? lastId = null)
+        public async Task<MessagesRepDto?> GetConversationMessagesAsync(string conversationId, int? limit = null, string? lastId = null)
         {
             Dictionary<string, string> parameters = new();
 
@@ -656,7 +657,7 @@ namespace ChasterSharp
 
         #region Extensions - Temporary Opening
 
-        public async Task<CombinationForPublic?> GetTemporaryOpeningLockCombination(string lockId)
+        public async Task<CombinationForPublic?> GetTemporaryOpeningLockCombinationAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -666,7 +667,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<CombinationForPublic>().ConfigureAwait(false);
         }
 
-        public async void SetTemporaryOpeningCombination(string lockId, string combinationId)
+        public async Task SetTemporaryOpeningCombinationAsync(string lockId, string combinationId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -676,7 +677,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<CombinationForPublic?> GetTemporaryOpeningLockCombinationFromActionLog(string lockId, string actionLogId)
+        public async Task<CombinationForPublic?> GetTemporaryOpeningLockCombinationFromActionLogAsync(string lockId, string actionLogId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(actionLogId, nameof(actionLogId));
@@ -692,7 +693,7 @@ namespace ChasterSharp
 
         #region Community Events
 
-        public async Task<CommunityEventCategory[]?> GetCommunityEventCategories()
+        public async Task<CommunityEventCategory[]?> GetCommunityEventCategoriesAsync()
         {
             var result = await GetAsync("community-event/categories").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -700,7 +701,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<CommunityEventCategory[]>().ConfigureAwait(false);
         }
 
-        public async Task<PeriodDetailsRepDto?> GetCommunityEventTaskDetails(DateTimeOffset date)
+        public async Task<PeriodDetailsRepDto?> GetCommunityEventTaskDetailsAsync(DateTimeOffset date)
         {
             PeriodDetailsDto dto = new() { Date = date };
 
@@ -714,7 +715,7 @@ namespace ChasterSharp
 
         #region Settings
 
-        public async Task<AppSettingsDto?> GetAppSettings()
+        public async Task<AppSettingsDto?> GetAppSettingsAsync()
         {
             var result = await GetAsync("settings").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -726,7 +727,7 @@ namespace ChasterSharp
 
         #region Users
 
-        public async Task<UserForPublic[]?> SearchUsers(string userName)
+        public async Task<UserForPublic[]?> SearchUsersAsync(string userName)
         {
             ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
 
@@ -738,7 +739,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<UserForPublic[]>().ConfigureAwait(false);
         }
 
-        public async Task<UserForPublic?> GetUserByDiscordId(string discordId)
+        public async Task<UserForPublic?> GetUserByDiscordIdAsync(string discordId)
         {
             ArgumentException.ThrowIfNullOrEmpty(discordId, nameof(discordId));
 
@@ -752,7 +753,7 @@ namespace ChasterSharp
 
         #region Keyholder
 
-        public async Task<KeyholderSearchLocksRepDto?> SearchLockedUsers(KeyholderSearchLocksDto keyholderSearchLocks)
+        public async Task<KeyholderSearchLocksRepDto?> SearchLockedUsersAsync(KeyholderSearchLocksDto keyholderSearchLocks)
         {
             ArgumentNullException.ThrowIfNull(keyholderSearchLocks);
 
@@ -766,7 +767,7 @@ namespace ChasterSharp
 
         #region Public Locks
 
-        public async Task<PublicLockForPublic?> GetPublicLock(string sharedLockId)
+        public async Task<PublicLockForPublic?> GetPublicLockAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -779,7 +780,7 @@ namespace ChasterSharp
         /// <summary>
         /// Return a PNG preview of a lock for sharing on social media
         /// </summary>
-        public async Task<byte[]> GetLockImage(string sharedLockId)
+        public async Task<byte[]> GetLockImageAsync(string sharedLockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(sharedLockId, nameof(sharedLockId));
 
@@ -789,7 +790,7 @@ namespace ChasterSharp
             return await result.GetBytesAsync().ConfigureAwait(false);
         }
 
-        public async Task<SearchPublicLockRepDto?> SearchPublicLocks(SearchPublicLockDto searchPublicLock)
+        public async Task<SearchPublicLockRepDto?> SearchPublicLocksAsync(SearchPublicLockDto searchPublicLock)
         {
             ArgumentNullException.ThrowIfNull(searchPublicLock);
 
@@ -799,7 +800,7 @@ namespace ChasterSharp
             return await result.GetObjectAsync<SearchPublicLockRepDto>().ConfigureAwait(false);
         }
 
-        public async Task<ExploreCategoryForPublic[]?> GetPublicLocksFromExplorePage()
+        public async Task<ExploreCategoryForPublic[]?> GetPublicLocksFromExplorePageAsync()
         {
             var result = await GetAsync("/explore/categories").ConfigureAwait(false);
             _ = result.HttpResponse.EnsureSuccessStatusCode();
@@ -812,7 +813,7 @@ namespace ChasterSharp
         #region Extensions - Verification Picture
 
         //TODO: Test this, and check if contentType is allowed
-        public async void UploadVerificationPicture(string lockId, byte[] data, string? contentType = null)
+        public async Task UploadVerificationPictureAsync(string lockId, byte[] data, string? contentType = null)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentNullException.ThrowIfNull(data);
@@ -825,7 +826,7 @@ namespace ChasterSharp
             _ = result.HttpResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task<VerificationPictureHistoryEntry[]?> GetVerificationPictures(string lockId)
+        public async Task<VerificationPictureHistoryEntry[]?> GetVerificationPicturesAsync(string lockId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
 
@@ -839,7 +840,7 @@ namespace ChasterSharp
 
         #region Extension Actions
 
-        public async void PilloryLock(string lockId, string pilloryExtensionId, string? reason, int duration)
+        public async Task PilloryLockAsync(string lockId, string pilloryExtensionId, string? reason, int duration)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(pilloryExtensionId, nameof(pilloryExtensionId));
@@ -850,10 +851,10 @@ namespace ChasterSharp
                 Payload = JsonSerializer.SerializeToElement(new PilloryLockActionParamsModel { Reason = reason, Duration = duration })
             };
 
-            _ = await TriggerLockAction(lockId, pilloryExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, pilloryExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async Task<PilloryVoteInfoActionRepDto[]?> GetPilloryVoteInfo(string lockId, string pilloryExtensionId)
+        public async Task<PilloryVoteInfoActionRepDto[]?> GetPilloryVoteInfoAsync(string lockId, string pilloryExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(pilloryExtensionId, nameof(pilloryExtensionId));
@@ -863,13 +864,13 @@ namespace ChasterSharp
                 Action = "getStatus"
             };
 
-            var result = await TriggerLockAction(lockId, pilloryExtensionId, dto).ConfigureAwait(false);
+            var result = await TriggerLockActionAsync(lockId, pilloryExtensionId, dto).ConfigureAwait(false);
 
             return await result.GetObjectAsync<PilloryVoteInfoActionRepDto[]>().ConfigureAwait(false);
 
         }
 
-        public async void UpdateLockTasks(string lockId, string tasksExtensionId, ICollection<TaskActionParamsModel> tasks)
+        public async Task UpdateLockTasksAsync(string lockId, string tasksExtensionId, ICollection<TaskActionParamsModel> tasks)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));
@@ -880,10 +881,10 @@ namespace ChasterSharp
                 Payload = JsonSerializer.SerializeToElement(new UpdateTasksActionModel { Tasks = tasks })
             };
 
-            _ = await TriggerLockAction(lockId, tasksExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, tasksExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async void AssignTask(string lockId, string tasksExtensionId, TaskActionParamsModel task)
+        public async Task AssignTaskAsync(string lockId, string tasksExtensionId, TaskActionParamsModel task)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));
@@ -894,10 +895,10 @@ namespace ChasterSharp
                 Payload = JsonSerializer.SerializeToElement(new AssignTaskActionModel { Task = task })
             };
 
-            _ = await TriggerLockAction(lockId, tasksExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, tasksExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async void AssignRandomTask(string lockId, string tasksExtensionId)
+        public async Task AssignRandomTaskAsync(string lockId, string tasksExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));
@@ -908,10 +909,10 @@ namespace ChasterSharp
                 Payload = JsonSerializer.SerializeToElement(new AssignVoteTaskActionModel())
             };
 
-            _ = await TriggerLockAction(lockId, tasksExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, tasksExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async void AssignVoteTask(string lockId, string tasksExtensionId, int duration)
+        public async Task AssignVoteTaskAsync(string lockId, string tasksExtensionId, int duration)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(tasksExtensionId, nameof(tasksExtensionId));
@@ -922,10 +923,10 @@ namespace ChasterSharp
                 Payload = JsonSerializer.SerializeToElement(new AssignVoteTaskActionModel { RequestVote = true, VoteDuration = duration })
             };
 
-            _ = await TriggerLockAction(lockId, tasksExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, tasksExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async Task<string?> GetShareLink(string lockId, string linkExtensionId)
+        public async Task<string?> GetShareLinkAsync(string lockId, string linkExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(linkExtensionId, nameof(linkExtensionId));
@@ -935,13 +936,13 @@ namespace ChasterSharp
                 Action = "getLink"
             };
 
-            var result = await TriggerLockAction(lockId, linkExtensionId, dto).ConfigureAwait(false);
+            var result = await TriggerLockActionAsync(lockId, linkExtensionId, dto).ConfigureAwait(false);
 
             var output = await result.GetObjectAsync<LinkActionRepDto>().ConfigureAwait(false);
             return output?.Link;
         }
 
-        public async Task<LinkInfoActionRepDto?> GetShareLinkInfo(string lockId, string linkExtensionId)
+        public async Task<LinkInfoActionRepDto?> GetShareLinkInfoAsync(string lockId, string linkExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(linkExtensionId, nameof(linkExtensionId));
@@ -951,12 +952,12 @@ namespace ChasterSharp
                 Action = "getInfo"
             };
 
-            var result = await TriggerLockAction(lockId, linkExtensionId, dto).ConfigureAwait(false);
+            var result = await TriggerLockActionAsync(lockId, linkExtensionId, dto).ConfigureAwait(false);
 
             return await result.GetObjectAsync<LinkInfoActionRepDto>().ConfigureAwait(false);
         }
 
-        public async void CreateVerificationPictureRequest(string lockId, string verificationPictureExtensionId)
+        public async Task CreateVerificationPictureRequestAsync(string lockId, string verificationPictureExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(verificationPictureExtensionId, nameof(verificationPictureExtensionId));
@@ -966,10 +967,10 @@ namespace ChasterSharp
                 Action = "createVerificationRequest"
             };
 
-            _ = await TriggerLockAction(lockId, verificationPictureExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, verificationPictureExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async void KeyholderTemporarilyUnlock(string lockId, string temporaryOpeningExtensionId)
+        public async Task KeyholderTemporarilyUnlockAsync(string lockId, string temporaryOpeningExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(temporaryOpeningExtensionId, nameof(temporaryOpeningExtensionId));
@@ -979,10 +980,10 @@ namespace ChasterSharp
                 Action = "keyholderOpen"
             };
 
-            _ = await TriggerLockAction(lockId, temporaryOpeningExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, temporaryOpeningExtensionId, dto).ConfigureAwait(false);
         }
 
-        public async void WearerTemporarilyUnlock(string lockId, string temporaryOpeningExtensionId)
+        public async Task WearerTemporarilyUnlockAsync(string lockId, string temporaryOpeningExtensionId)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(temporaryOpeningExtensionId, nameof(temporaryOpeningExtensionId));
@@ -992,14 +993,29 @@ namespace ChasterSharp
                 Action = "submit"
             };
 
-            _ = await TriggerLockAction(lockId, temporaryOpeningExtensionId, dto).ConfigureAwait(false);
+            _ = await TriggerLockActionAsync(lockId, temporaryOpeningExtensionId, dto).ConfigureAwait(false);
+        }
+
+        public async Task<GuessTheTimerActionRepDto?> SubmitGuessToGuessTheTimerAsync(string lockId, string guessTheTimerExtensionId)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
+            ArgumentException.ThrowIfNullOrEmpty(guessTheTimerExtensionId, nameof(guessTheTimerExtensionId));
+
+            TriggerExtensionActionDto dto = new()
+            {
+                Action = "submit"
+            };
+
+            var result = await TriggerLockActionAsync(lockId, guessTheTimerExtensionId, dto).ConfigureAwait(false);
+
+            return await result.GetObjectAsync<GuessTheTimerActionRepDto>().ConfigureAwait(false);
         }
 
         #endregion
 
         #region Activity
 
-        public async Task<PostsRepDto?> GetPublicActivity()
+        public async Task<PostsRepDto?> GetPublicActivityAsync()
         {
             //NOTE: The API ignores the GetPostsDto, but we'll leave this here just in case.
             PostsDto dto = new() { Limit = 10 };
@@ -1021,7 +1037,7 @@ namespace ChasterSharp
 
         private async Task<ApiResult> PostObjectAsync(string relativeUri, Dictionary<string, string>? parameters = null, object? obj = null)
         {
-            using var content = obj is null ? null : new StringContent(JsonSerializer.Serialize(obj));
+            using var content = obj is null ? null : new StringContent(JsonSerializer.Serialize(obj), MediaTypeHeaderValue.Parse("application/json"));
             return new ApiResult(await _httpClient.PostAsync(BuildUrl(relativeUri, parameters), content).ConfigureAwait(false));
         }
 
@@ -1032,7 +1048,7 @@ namespace ChasterSharp
 
         private async Task<ApiResult> PutObjectAsync(string relativeUri, Dictionary<string, string>? parameters = null, object? obj = null)
         {
-            using var content = obj is null ? null : new StringContent(JsonSerializer.Serialize(obj));
+            using var content = obj is null ? null : new StringContent(JsonSerializer.Serialize(obj), MediaTypeHeaderValue.Parse("application/json"));
             return new ApiResult(await _httpClient.PutAsync(BuildUrl(relativeUri, parameters), content).ConfigureAwait(false));
         }
 
@@ -1041,7 +1057,7 @@ namespace ChasterSharp
             return new ApiResult(await _httpClient.DeleteAsync(BuildUrl(relativeUri, parameters)).ConfigureAwait(false));
         }
 
-        private static Uri BuildUrl(string relativeUri, Dictionary<string, string>? parameters = null)
+        private static string BuildUrl(string relativeUri, Dictionary<string, string>? parameters = null)
         {
             StringBuilder builder = new();
             _ = builder.Append(relativeUri);
@@ -1055,7 +1071,7 @@ namespace ChasterSharp
                 builder.Length--;
             }
 
-            return new Uri(builder.ToString());
+            return builder.ToString();
         }
 
         #endregion

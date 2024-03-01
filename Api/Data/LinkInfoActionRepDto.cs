@@ -19,5 +19,4 @@ namespace ChasterSharp
         [JsonPropertyName("canVote")]
         public bool CanVote { get; set; } = default!;
     }
-
 }

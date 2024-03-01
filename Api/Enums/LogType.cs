@@ -2,6 +2,7 @@
 
 namespace ChasterSharp
 {
+
     public enum LogType
     {
         Unknown = -1,
@@ -9,8 +10,16 @@ namespace ChasterSharp
         Locked,
         [EnumMember(Value = "unlocked")]
         Unlocked,
+        [EnumMember(Value = "deserted")]
+        Deserted,
+        //[EnumMember(Value = "combination_verified")] //TODO: Research payload
+        //CombinationVerified,
+        //[EnumMember(Value = "combination_failed")] //TODO: Research payload
+        //CombinationFailed,
         [EnumMember(Value = "keyholder_trusted")]
         KeyholderTrusted,
+        //[EnumMember(Value = "locktober_points_changed")] //TODO: Research payload
+        //LocktoberPointsChanged,
         [EnumMember(Value = "session_offer_accepted")]
         SessionOfferAccepted,
         [EnumMember(Value = "max_limit_date_removed")]
@@ -21,7 +30,7 @@ namespace ChasterSharp
         LockFrozen,
         [EnumMember(Value = "lock_unfrozen")]
         LockUnfrozen,
-        [EnumMember(Value = "timer_revealed")]
+        [EnumMember(Value = "timer_hidden")]
         TimerHidden,
         [EnumMember(Value = "timer_revealed")]
         TimerRevealed,
@@ -62,7 +71,11 @@ namespace ChasterSharp
         [EnumMember(Value = "pillory_out")] //Payload
         PilloryEnded,
         [EnumMember(Value = "wheel_of_fortune_turned")] //Payload
-        WheelOfFortuneTurned
+        WheelOfFortuneTurned,
+        [EnumMember(Value = "timer_guessed")]
+        TimerGuessed
+        //[EnumMember(Value = "random_event")] //TODO: Research payload. Documented as "Random Events: A random event was triggered", but this may be obsolete?
+        //RandomEvent
     }
 
 }

@@ -1,6 +1,6 @@
 Purpose
 --------
-ChasterSharp is a lightweight C# wrapper for Chaster.app API, designed to provide a foundational framework for building more advanced clients and applications on top of it. The intended use case of this framework is to support bots and other service integrations to interact with Chaster directly, as opposed to extending Chaster's functionality via the Extensions API. As such, support for partner extensions will be limited if available at all.
+ChasterSharp is a lightweight C# wrapper for the Chaster.app API, designed to provide a foundational framework for building more advanced clients and applications on top of it. The intended use case of this framework is to support bots and other service integrations to interact with Chaster directly, as opposed to extending Chaster's functionality via the Extensions API. As such, support for partner extensions will be limited if available at all.
 
 Important Notice
 --------

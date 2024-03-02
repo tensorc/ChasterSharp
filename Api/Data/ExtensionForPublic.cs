@@ -59,7 +59,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("availableModes")]
         [Required]
-        [JsonConverter(typeof(CustomICollectionStringEnumConverter<LockExtensionMode>))]
+        [JsonConverter(typeof(CustomListStringEnumConverter<LockExtensionMode>))]
         public List<LockExtensionMode> AvailableModes { get; set; } = [];
         /// <summary>
         /// Default regularity

@@ -1,16 +1,15 @@
-﻿using System.Collections.ObjectModel;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class CustomICollectionStringEnumConverter<TEnum> : JsonConverter<ICollection<TEnum>> where TEnum : Enum
+    public sealed class CustomListStringEnumConverter<TEnum> : JsonConverter<List<TEnum>> where TEnum : Enum
     {
-        public override ICollection<TEnum> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override List<TEnum> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException($"Expected StartArray but got {reader.TokenType}.");
 
-            Collection<TEnum> collection = [];
+            List<TEnum> collection = [];
 
             while (reader.Read())
             {
@@ -26,7 +25,7 @@ namespace ChasterSharp
             throw new JsonException("Unexpected end when reading JSON.");
         }
 
-        public override void Write(Utf8JsonWriter writer, ICollection<TEnum> value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, List<TEnum> value, JsonSerializerOptions options)
         {
             ArgumentNullException.ThrowIfNull(writer, nameof(writer));
             ArgumentNullException.ThrowIfNull(value, nameof(value));

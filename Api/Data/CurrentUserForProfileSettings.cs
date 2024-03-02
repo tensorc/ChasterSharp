@@ -10,7 +10,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("features")]
         [Required]
-        [JsonConverter(typeof(CustomICollectionStringEnumConverter<FeatureSwitch>))]
+        [JsonConverter(typeof(CustomListStringEnumConverter<FeatureSwitch>))]
         public List<FeatureSwitch> Features { get; set; } = new();
         [JsonPropertyName("canEditUsername")]
         public bool CanEditUsername { get; set; } = default!;

@@ -24,10 +24,10 @@ You can then perform actions on the current user's lock(s), such as adding time.
 ```cs
 var personalLocks = await chasterClient.GetLocksAsync(UserLockStatus.Active);
 
-if (personalLocks is null)
+if (personalLocks.Value is null)
     return;
 
-foreach (var personalLock in personalLocks)
+foreach (var personalLock in personalLocks.Value)
 {
     await chasterClient.AddLockTimeAsync(personalLock.Id, 60 * 60 * 24); //Add 24h to lock
 }
@@ -46,10 +46,10 @@ var searchDto = new KeyholderSearchLocksDto()
 //There is potential pagination here, but you get the idea
 var keyholderLocks = await chasterClient.SearchLockedUsersAsync(searchDto);
 
-if (keyholderLocks is null)
+if (keyholderLocks.Value is null)
     return;
 
-foreach (var keyholdeLock in keyholderLocks.Locks)
+foreach (var keyholdeLock in keyholderLocks.Value.Locks)
 {
     string? pilloryExtensionId = keyholdeLock.Extensions.
         FirstOrDefault(x => x.GetExtensionSlug() == ExtensionSlug.Pillory)?.Id;

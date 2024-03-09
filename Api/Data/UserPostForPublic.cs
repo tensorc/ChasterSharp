@@ -18,7 +18,7 @@ namespace ChasterSharp
         public DateTimeOffset ExpiresAt { get; set; } = default!;
 
         [JsonPropertyName("lock")]
-        public LockForPublic Lock { get; set; } = new();
+        public Lock Lock { get; set; } = new();
 
         [JsonPropertyName("extensionParty")]
         public ExtensionPartyForPublic ExtensionParty { get; set; } = new();

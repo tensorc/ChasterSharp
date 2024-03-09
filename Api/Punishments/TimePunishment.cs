@@ -7,7 +7,7 @@ namespace ChasterSharp
     {
 
         [JsonPropertyName("params")]
-        public int? Duration { get; set; }
+        public int Duration { get; set; }
 
         public TimePunishment()
         {

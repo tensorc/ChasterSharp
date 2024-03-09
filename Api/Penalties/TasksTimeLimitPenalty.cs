@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public TasksTimeLimitPenalty()
         {
-            Name = PenaltyName.TasksDoTask;
+            Name = PenaltyName.TasksTimeLimit;
         }
     }
 

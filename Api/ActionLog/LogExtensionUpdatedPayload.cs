@@ -3,10 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogExtensionDisabledPayload
+    public sealed class LogExtensionUpdatedPayload
     {
         [JsonPropertyName("oldConfig")]
-        public ActionLogExtensionConfig OldConfig { get; set; } = new();
+        public LogExtensionConfig OldConfig { get; set; } = new();
+
+        [JsonPropertyName("newConfig")]
+        public LogExtensionConfig NewConfig { get; set; } = new();
 
         /// <summary>
         /// The extension slug. 

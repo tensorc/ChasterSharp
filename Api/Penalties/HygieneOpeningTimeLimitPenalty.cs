@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public HygieneOpeningTimeLimitPenalty()
         {
-            Name = PenaltyName.TemporaryOpeningTimeLimit;
+            Name = PenaltyName.HygieneOpeningTimeLimit;
         }
     }
 

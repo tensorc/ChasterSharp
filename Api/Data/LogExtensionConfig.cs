@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogExtensionConfig
+    public sealed class LogExtensionConfig
     {
         /// <summary>
         /// The extension slug. 

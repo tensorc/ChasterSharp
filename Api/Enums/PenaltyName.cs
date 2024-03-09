@@ -6,19 +6,19 @@ namespace ChasterSharp
     {
         Unknown = -1,
         [EnumMember(Value = "dice_roll")]
-        DiceRoll,
+        DiceFrequency,
         [EnumMember(Value = "temporary_opening_open")]
-        TemporaryOpeningOpen,
+        HygieneOpeningFrequency,
         [EnumMember(Value = "temporary_opening_time_limit")]
-        TemporaryOpeningTimeLimit,
+        HygieneOpeningTimeLimit,
         [EnumMember(Value = "tasks")]
-        Tasks,
+        TasksFrequency,
         [EnumMember(Value = "tasks_do_task")]
-        TasksDoTask,
+        TasksTimeLimit,
         [EnumMember(Value = "verification_picture_verify")]
-        VerificationPictureVerify,
+        VerificationPictureFrequency,
         [EnumMember(Value = "wheel_of_fortune_turns")]
-        WheelOfFortuneTurns
+        WheelOfFortuneFrequency
     }
 
 }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public class PunishmentBase
+    public abstract class PunishmentBase
     {
         [JsonPropertyName("name")]
         [JsonConverter(typeof(CustomStringEnumConverter<PunishmentName>))]

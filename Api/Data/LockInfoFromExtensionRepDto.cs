@@ -17,7 +17,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("lock")]
         [Required]
-        public LockForPublic Lock { get; set; } = new();
+        public Lock Lock { get; set; } = new();
 
     }
 

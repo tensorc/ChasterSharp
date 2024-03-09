@@ -10,7 +10,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("results")]
         [Required]
-        public List<ActionLogForPublic> Results { get; set; } = new();
+        public List<LogForPublic> Results { get; set; } = new();
         /// <summary>
         /// Number of total action logs
         /// </summary>

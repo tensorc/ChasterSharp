@@ -142,7 +142,7 @@ namespace ChasterSharp
         /// <br/>Only returned in shared locks endpoints
         /// </summary>
         [JsonPropertyName("locks")]
-        public List<LockForPublic>? Locks { get; set; } = default!;
+        public List<Lock>? Locks { get; set; } = default!;
         /// <summary>
         /// Whether the lock requires a password
         /// </summary>

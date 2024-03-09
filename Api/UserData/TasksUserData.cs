@@ -19,7 +19,7 @@ namespace ChasterSharp
         public TaskPayload? CurrentTask { get; set; }
 
         [JsonPropertyName("userTasks")]
-        public List<TaskPayload>? UserTasks { get; set; } = default;
+        public List<TaskPayload> UserTasks { get; set; } = new();
 
         [JsonPropertyName("currentTaskVote")]
         public string? CurrentTaskVoteId { get; set; }

@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogPilloryEndedPayload
+    public sealed class LogPilloryEndedPayload
     {
         [JsonPropertyName("timeAdded")]
         public int TimeAdded { get; set; }

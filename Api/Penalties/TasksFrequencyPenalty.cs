@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public TasksFrequencyPenalty()
         {
-            Name = PenaltyName.Tasks;
+            Name = PenaltyName.TasksFrequency;
         }
     }
 

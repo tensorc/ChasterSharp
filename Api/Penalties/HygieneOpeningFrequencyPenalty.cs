@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public HygieneOpeningFrequencyPenalty()
         {
-            Name = PenaltyName.TemporaryOpeningOpen;
+            Name = PenaltyName.HygieneOpeningFrequency;
         }
     }
 

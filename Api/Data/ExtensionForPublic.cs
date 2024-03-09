@@ -67,7 +67,7 @@ namespace ChasterSharp
         [JsonPropertyName("defaultRegularity")]
         public int DefaultRegularity { get; set; } = 3600;
         /// <summary>
-        /// TWhether the extension is enabled
+        /// Whether the extension is enabled
         /// </summary>
         [JsonPropertyName("isEnabled")]
         public bool IsEnabled { get; set; } = true;

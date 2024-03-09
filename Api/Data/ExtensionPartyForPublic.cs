@@ -71,7 +71,7 @@ namespace ChasterSharp
         /// <br/>If the value is 0, the user cannot perform a regular action.
         /// </summary>
         [JsonPropertyName("nbActionsRemaining")]
-        public int NbActionsRemaining { get; set; } = default!;
+        public int? NbActionsRemaining { get; set; }
         /// <summary>
         /// The date when the next regular action can be performed.
         /// <br/>

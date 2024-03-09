@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public VerificationPictureFrequencyPenalty()
         {
-            Name = PenaltyName.VerificationPictureVerify;
+            Name = PenaltyName.VerificationPictureFrequency;
         }
     }
 

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogForPublic
+    public sealed class LogForPublic
     {
         /// <summary>
         /// The action log id
@@ -31,7 +31,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("lock")]
         [Required(AllowEmptyStrings = true)]
-        public string Lock { get; set; } = default!;
+        public string LockId { get; set; } = default!;
         /// <summary>
         /// The role of the user who performed the action
         /// </summary>

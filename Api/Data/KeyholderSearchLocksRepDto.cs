@@ -20,7 +20,7 @@ namespace ChasterSharp
         /// </summary>
         [JsonPropertyName("locks")]
         [Required]
-        public List<LockForKeyholder> Locks { get; set; } = [];
+        public List<Lock> Locks { get; set; } = [];
 
     }
 

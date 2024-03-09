@@ -5,6 +5,6 @@ namespace ChasterSharp
     public sealed class PilloryPunishmentParams
     {
         [JsonPropertyName("duration")]
-        public int? Duration { get; set; } = default!;
+        public int Duration { get; set; }
     }
 }

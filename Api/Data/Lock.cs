@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class LockForPublic
+    public sealed class Lock
     {
         /// <summary>
         /// The status

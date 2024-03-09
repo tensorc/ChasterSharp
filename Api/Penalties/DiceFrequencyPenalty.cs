@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public DiceFrequencyPenalty()
         {
-            Name = PenaltyName.DiceRoll;
+            Name = PenaltyName.DiceFrequency;
         }
     }
 

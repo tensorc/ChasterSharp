@@ -11,7 +11,7 @@ namespace ChasterSharp
 
         public WheelOfFortuneFrequencyPenalty()
         {
-            Name = PenaltyName.WheelOfFortuneTurns;
+            Name = PenaltyName.WheelOfFortuneFrequency;
         }
     }
 

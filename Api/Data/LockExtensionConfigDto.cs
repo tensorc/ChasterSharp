@@ -19,13 +19,15 @@ namespace ChasterSharp
         [Required]
         public JsonElement Config { get; set; } = default!;
         [JsonPropertyName("partnerConfigurationToken")]
-        public string? PartnerConfigurationToken { get; set; } = default!;
+        public string? PartnerConfigurationToken { get; set; }
+
         [JsonPropertyName("mode")]
         [Required(AllowEmptyStrings = true)]
         [JsonConverter(typeof(CustomStringEnumConverter<LockExtensionMode>))]
-        public LockExtensionMode Mode { get; set; } = default!;
-        [JsonPropertyName("regularity")]
-        public int Regularity { get; set; } = default!;
+        public LockExtensionMode Mode { get; set; } = LockExtensionMode.Unlimited;
+
+        [JsonPropertyName("regularity")] 
+        public int Regularity { get; set; } = 3600;
 
         public ExtensionSlug GetExtensionSlug()
         {

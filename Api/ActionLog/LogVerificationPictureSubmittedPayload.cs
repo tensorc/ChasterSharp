@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogVerificationPictureSubmittedPayload
+    public sealed class LogVerificationPictureSubmittedPayload
     {
         [JsonPropertyName("verificationCode")]
         public string? VerificationCode { get; set; }

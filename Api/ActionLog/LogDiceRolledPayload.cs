@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogDiceRolledPayload
+    public sealed class LogDiceRolledPayload
     {
         [JsonPropertyName("adminDice")]
         public int AdminDice { get; set; }

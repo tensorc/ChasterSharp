@@ -2,7 +2,7 @@
 
 namespace ChasterSharp
 {
-    public sealed class ActionLogMaxLimitDateIncreasedPayload
+    public sealed class LogMaxLimitDateIncreasedPayload
     {
         [JsonPropertyName("date")]
         public DateTimeOffset Date { get; set; }

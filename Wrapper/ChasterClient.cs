@@ -833,7 +833,7 @@ namespace ChasterSharp
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
             ArgumentException.ThrowIfNullOrEmpty(linkExtensionId, nameof(linkExtensionId));
-
+            
             TriggerExtensionActionDto dto = new()
             {
                 Action = "vote",
@@ -846,17 +846,17 @@ namespace ChasterSharp
             return WrapResult(output?.Duration, result);
         }
 
-        public async Task<ApiResult<SpinWheelActionModel?>> SpinWheelOfFortuneAsync(string lockId, string diceExtensionId, string? bearerToken = null)
+        public async Task<ApiResult<SpinWheelActionModel?>> SpinWheelOfFortuneAsync(string lockId, string wheelOfFortuneExtensionId, string? bearerToken = null)
         {
             ArgumentException.ThrowIfNullOrEmpty(lockId, nameof(lockId));
-            ArgumentException.ThrowIfNullOrEmpty(diceExtensionId, nameof(diceExtensionId));
+            ArgumentException.ThrowIfNullOrEmpty(wheelOfFortuneExtensionId, nameof(wheelOfFortuneExtensionId));
 
             TriggerExtensionActionDto dto = new()
             {
                 Action = "submit"
             };
 
-            var result = await TriggerLockActionAsync(lockId, diceExtensionId, dto, bearerToken: bearerToken).ConfigureAwait(false);
+            var result = await TriggerLockActionAsync(lockId, wheelOfFortuneExtensionId, dto, bearerToken: bearerToken).ConfigureAwait(false);
             var output = await result.GetObjectAsync<SpinWheelActionModel>().ConfigureAwait(false);
 
             return WrapResult<SpinWheelActionModel?>(output, result);

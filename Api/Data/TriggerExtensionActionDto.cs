@@ -13,12 +13,13 @@ namespace ChasterSharp
         [JsonPropertyName("action")]
         [Required(AllowEmptyStrings = true)]
         public string Action { get; set; } = default!;
+
         /// <summary>
         /// The action payload
         /// </summary>
         [JsonPropertyName("payload")]
         [Required]
-        public JsonElement Payload { get; set; } 
+        public JsonElement Payload { get; set; } = Util.EmptyJsonElement;
 
     }
 

@@ -9,7 +9,7 @@ namespace ChasterSharp
         public override TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             return reader.TokenType != JsonTokenType.String
-                ? throw new JsonException($"Expected String but got {reader.TokenType}.")
+                ? (TEnum)EnumStringConverter.GetEnumFromMemberValue(typeof(TEnum), null)
                 : (TEnum)EnumStringConverter.GetEnumFromMemberValue(typeof(TEnum), reader.GetString());
         }
 

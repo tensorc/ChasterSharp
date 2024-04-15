@@ -8,12 +8,17 @@ namespace ChasterSharp
 
         public static Enum GetEnumFromMemberValue(Type typeToConvert, string? enumMemberValue)
         {
+            ArgumentNullException.ThrowIfNull(typeToConvert);
+
             foreach (var field in typeToConvert.GetFields())
                 if (Attribute.GetCustomAttribute(field, typeof(EnumMemberAttribute)) is EnumMemberAttribute enumMemberAttribute && enumMemberAttribute.Value == enumMemberValue)
                 {
                     var value = field.GetValue(null);
 
-                    return value != null ? (Enum)value : throw new JsonException($"Value retrieved from field is null for {typeToConvert.Name}.");
+                    if (value is null)
+                        break;
+
+                    return (Enum)value;
                 }
 
             return (Enum)Enum.ToObject(typeToConvert, -1);
@@ -21,6 +26,8 @@ namespace ChasterSharp
 
         public static string? GetMemberValueFromEnum(Enum value)
         {
+            ArgumentNullException.ThrowIfNull(value);
+
             var enumString = value.ToString();
 
             foreach (var field in value.GetType().GetFields())

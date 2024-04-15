@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ChasterSharp
 {
-    public sealed class WheelOfFortuneSegment
+    public class WheelOfFortuneSegment
     {
         [JsonPropertyName("type")]
         [JsonConverter(typeof(CustomStringEnumConverter<WheelOfFortuneSegmentType>))]

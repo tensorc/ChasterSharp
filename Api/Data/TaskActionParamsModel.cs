@@ -6,6 +6,7 @@ namespace ChasterSharp
     {
         [JsonPropertyName("task")]
         public string? Task { get; set; } = default!;
+
         [JsonPropertyName("points")]
         public int Points { get; set; } = default!;
     }

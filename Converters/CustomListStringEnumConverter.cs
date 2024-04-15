@@ -15,9 +15,9 @@ namespace ChasterSharp
             {
                 if (reader.TokenType == JsonTokenType.EndArray) return collection;
 
-                if (reader.TokenType != JsonTokenType.String) throw new JsonException($"Expected String but got {reader.TokenType}.");
-
-                var enumValue = (TEnum)EnumStringConverter.GetEnumFromMemberValue(typeof(TEnum), reader.GetString());
+                var enumValue = reader.TokenType != JsonTokenType.String
+                    ? (TEnum)EnumStringConverter.GetEnumFromMemberValue(typeof(TEnum), null)
+                    : (TEnum)EnumStringConverter.GetEnumFromMemberValue(typeof(TEnum), reader.GetString());
 
                 collection.Add(enumValue);
             }
@@ -28,7 +28,7 @@ namespace ChasterSharp
         public override void Write(Utf8JsonWriter writer, List<TEnum> value, JsonSerializerOptions options)
         {
             ArgumentNullException.ThrowIfNull(writer, nameof(writer));
-            ArgumentNullException.ThrowIfNull(value, nameof(value));
+            ArgumentNullException.ThrowIfNull(value, nameof(value)); 
 
             writer.WriteStartArray();
 

@@ -6,7 +6,7 @@ namespace ChasterSharp
     public sealed class LogWheelOfFortuneTurnedPayload
     {
         [JsonPropertyName("segment")]
-        public WheelOfFortuneSegment Segment { get; set; } = new();
+        public WheelOfFortuneSegmentModel Segment { get; set; } = new();
 
     }
 

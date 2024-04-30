@@ -35,6 +35,17 @@ namespace ChasterSharp
             return (ExtensionSlug)EnumStringConverter.GetEnumFromMemberValue(typeof(ExtensionSlug), Slug);
         }
 
+        public LockExtensionConfigDto ToLockExtensionConfig()
+        {
+            return new LockExtensionConfigDto
+            {
+                Slug = Slug,
+                Config = Config,
+                Mode = Mode,
+                Regularity = Regularity
+            };
+        }
+
     }
 
 }

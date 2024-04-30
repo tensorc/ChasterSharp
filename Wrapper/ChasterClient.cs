@@ -95,7 +95,7 @@ namespace ChasterSharp
         {
             ArgumentNullException.ThrowIfNull(createUpdateSharedLock, nameof(createUpdateSharedLock));
 
-            var result = await PostObjectAsync("locks/shared-locks", bearerToken: bearerToken).ConfigureAwait(false);
+            var result = await PostObjectAsync("locks/shared-locks", obj: createUpdateSharedLock, bearerToken: bearerToken).ConfigureAwait(false);
             var output = await result.GetObjectAsync<CreateSharedLockRepDto>().ConfigureAwait(false);
 
             return WrapResult<string?>(output?.Id, result);

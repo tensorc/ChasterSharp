@@ -37,7 +37,6 @@ namespace ChasterSharp
         /// The creator
         /// </summary>
         [JsonPropertyName("user")]
-        [Required]
         public UserForPublic User { get; set; } = new();
         /// <summary>
         /// The Unsplash photo
@@ -169,6 +168,9 @@ namespace ChasterSharp
         [JsonPropertyName("lastSavedAt")]
         [Required(AllowEmptyStrings = true)]
         public DateTimeOffset LastSavedAt { get; set; } = default!;
+
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; } = [];
 
     }
 

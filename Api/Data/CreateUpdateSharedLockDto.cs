@@ -103,6 +103,8 @@ namespace ChasterSharp
         [JsonPropertyName("isFindom")]
         public bool IsFindom { get; set; } = false;
 
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; } = [];
     }
 
 }

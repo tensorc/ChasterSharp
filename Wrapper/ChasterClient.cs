@@ -1125,9 +1125,11 @@ namespace ChasterSharp
 
         private async Task<ApiResult> GetResultAsync(HttpRequestMessage request)
         {
+            HttpResponseMessage? response = null;
+
             try
             {
-                var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
+                response = await _httpClient.SendAsync(request).ConfigureAwait(false);
                 _ = response.EnsureSuccessStatusCode();
 
                 return new ApiResult(response, response.StatusCode);
@@ -1136,7 +1138,7 @@ namespace ChasterSharp
             {
                 if (ex.StatusCode is >= HttpStatusCode.BadRequest and <= HttpStatusCode.InternalServerError && ex.StatusCode != HttpStatusCode.RequestTimeout && ex.StatusCode != HttpStatusCode.TooManyRequests)
                 {
-                    return new ApiResult(null, ex.StatusCode);
+                    return new ApiResult(response, ex.StatusCode);
                 }
 
                 throw;

@@ -33,7 +33,7 @@ namespace ChasterSharp
         /// The total duration, since the creation of the lock
         /// </summary>
         [JsonPropertyName("totalDuration")]
-        public int TotalDuration { get; set; } = default!;
+        public long TotalDuration { get; set; } = default!;
         /// <summary>
         /// The user
         /// </summary>
